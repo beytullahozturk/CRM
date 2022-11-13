@@ -12,10 +12,10 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public string ProductName { get; set; }
         public int CategoryId { get; set; }
-        public int SupplierId { get; set; }
+        public int? SupplierId { get; set; }
         public decimal UnitPrice { get; set; }
         public int UnitInStock { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsDelete { get; set; }
         public bool IsStatus { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
