@@ -4,8 +4,7 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal : EfEntityRepositoryBase<Category, CRMDbContext>, ICategoryDal
+    public class EfOrderDal : EfEntityRepositoryBase<Order, CRMDbContext>, IOrderDal
     {
-        
     }
 }

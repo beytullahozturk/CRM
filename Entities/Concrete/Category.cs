@@ -1,9 +1,5 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
@@ -11,8 +7,8 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public string Decription { get; set; }
-        public bool IsDeleted { get; set; }
+        public string Description { get; set; }
+        public bool IsDelete { get; set; }
         public bool IsStatus { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
