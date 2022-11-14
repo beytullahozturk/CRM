@@ -15,7 +15,7 @@ namespace Business.Constants
         //public static string ProductUpdated = "Ürün başarıyla güncellendi.";
         //public static string ProductDeleted = "Ürün başarıyla silindi.";
         //public static string ProductAlreadyExists = "Ürün daha önce eklenmiş!";
-        //public static string ProductNotAdded = "Ürün ekleme başarısız!";
+        public static string ProductNotAdded = "Ürün ekleme başarısız!";
         //public static string ProductNameInvalid = "Ürün ismi geçersiz";
         //public static string ProductNotFound = "Ürün bulunamadı!";
     }
