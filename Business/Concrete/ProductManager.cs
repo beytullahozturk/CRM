@@ -32,29 +32,44 @@ namespace Business.Concrete
 
         }
 
+        public IResult Delete(int id)
+        {
+            try
+            {
+                var postData = _productDal.GetAll();
+                var deleteData = postData.Find(p => p.Id == id);
+                deleteData.IsDelete = true;
+
+                _productDal.Update(deleteData);
+                return new SuccessResult(Messages.ProductDeleted);
+            }
+            catch (Exception Ex)
+            {
+                return new ErrorResult(Ex.Message);
+            }
+
+        }
+
         public IDataResult<List<Product>> GetAll()
         {
             try
             {
-                return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductListedSuccess);
-
+                return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.IsDelete==false), Messages.ProductListedSuccess);
             }
             catch (Exception Ex)
             {
-
                 return new ErrorDataResult<List<Product>>(Ex.Message);
             }
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
-
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id && p.IsDelete==false));
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p => p.Id == productId));
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.Id == productId && p.IsDelete==false));
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
@@ -64,11 +79,34 @@ namespace Business.Concrete
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            //if (DateTime.Now.Hour == 22)
-            //{
-            //    return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime);
-            //}
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
+        }
+
+        public IResult Update(Product product)
+        {
+            try
+            {
+                var postData = _productDal.GetAll();
+                var updateData = postData.Find(p => p.Id == product.Id);
+                updateData.ProductName = product.ProductName;
+                updateData.CategoryId = product.CategoryId;
+                updateData.SupplierId = product.SupplierId;
+                updateData.UnitPrice = product.UnitPrice;
+                updateData.UnitInStock = product.UnitInStock;
+                updateData.IsStatus = product.IsStatus;
+                updateData.CreatedAt = updateData.CreatedAt;
+                updateData.UpdatedAt = product.UpdatedAt;
+                updateData.CreatedBy = updateData.CreatedBy;
+                updateData.UpdatedBy = product.UpdatedBy;
+
+                _productDal.Update(updateData);
+                return new SuccessResult(Messages.ProductUpdated);
+            }
+            catch (Exception Ex)
+            {
+                return new ErrorResult(Ex.Message);
+            }
+
         }
     }
 }
