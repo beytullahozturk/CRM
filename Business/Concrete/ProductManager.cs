@@ -22,7 +22,23 @@ namespace Business.Concrete
         {
             try
             {
-                _productDal.Add(product);
+                var productAdd = new Product
+                {
+                    ProductName = product.ProductName,
+                    CategoryId = product.CategoryId,
+                    SupplierId = product.SupplierId,
+                    UnitPrice = product.UnitPrice,
+                    UnitInStock = product.UnitInStock,
+                    IsDelete = false,
+                    IsStatus = true,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    CreatedBy = 1,
+                    UpdatedBy = 1
+                };
+
+                _productDal.Add(productAdd);
+
                 return new SuccessResult(Messages.ProductAdded);
             }
             catch (Exception Ex)
@@ -94,10 +110,8 @@ namespace Business.Concrete
                 updateData.UnitPrice = product.UnitPrice;
                 updateData.UnitInStock = product.UnitInStock;
                 updateData.IsStatus = product.IsStatus;
-                updateData.CreatedAt = updateData.CreatedAt;
-                updateData.UpdatedAt = product.UpdatedAt;
-                updateData.CreatedBy = updateData.CreatedBy;
-                updateData.UpdatedBy = product.UpdatedBy;
+                updateData.UpdatedAt = DateTime.Now;
+                updateData.UpdatedBy = 1;
 
                 _productDal.Update(updateData);
                 return new SuccessResult(Messages.ProductUpdated);
