@@ -1,27 +1,28 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class SuppliersController : Controller
     {
-        IProductService _productService;
+        ISupplierService _supplierService;
 
-        public ProductsController(IProductService productService)
+        public SuppliersController(ISupplierService supplierService)
         {
-            _productService = productService;
+            _supplierService = supplierService;
         }
 
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            var result = _productService.GetAll();
+            var result = _supplierService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,7 +33,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _productService.GetById(id);
+            var result = _supplierService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -42,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Post(Product product)
+        public IActionResult Post(Supplier supplier)
         {
-            var result = _productService.Add(product);
+            var result = _supplierService.Add(supplier);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update(Product product)
+        public IActionResult Update(Supplier supplier)
         {
-            var result = _productService.Update(product);
+            var result = _supplierService.Update(supplier);
 
             if (result.Success)
             {
@@ -67,7 +68,8 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(int id)
         {
-            var result = _productService.Delete(id);
+            var result = _supplierService.Delete(id);
+
             if (result.Success)
             {
                 return Ok(result);
@@ -75,5 +77,4 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
     }
-
 }

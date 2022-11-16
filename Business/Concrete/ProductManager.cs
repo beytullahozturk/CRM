@@ -53,12 +53,12 @@ namespace Business.Concrete
 
         }
 
-        public IResult Delete(int id)
+        public IResult Delete(int productId)
         {
             try
             {
                 var postData = _productDal.GetAll();
-                var deleteData = postData.Find(p => p.Id == id);
+                var deleteData = postData.Find(p => p.Id == productId);
                 deleteData.IsDelete = true;
 
                 _productDal.Update(deleteData);
@@ -75,7 +75,7 @@ namespace Business.Concrete
         {
             try
             {
-                return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.IsDelete==false), Messages.ProductListedSuccess);
+                return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.IsDelete == false), Messages.ProductListedSuccess);
             }
             catch (Exception Ex)
             {
@@ -83,26 +83,60 @@ namespace Business.Concrete
             }
         }
 
-        public IDataResult<List<Product>> GetAllByCategoryId(int id)
+        public IDataResult<List<Product>> GetAllByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id && p.IsDelete==false));
+            try
+            {
+                return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId && p.IsDelete == false));
+            }
+            catch (Exception Ex)
+            {
+
+                return new ErrorDataResult<List<Product>>(Ex.Message);
+            }
+
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p => p.Id == productId && p.IsDelete==false));
+            try
+            {
+                return new SuccessDataResult<Product>(_productDal.Get(p => p.Id == productId && p.IsDelete == false));
+            }
+            catch (Exception Ex)
+            {
+
+                return new ErrorDataResult<Product>(Ex.Message);
+            }
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
+            try
+            {
+                return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
+            }
+            catch (Exception Ex)
+            {
+
+                return new ErrorDataResult<List<Product>>(Ex.Message);
+            }
         }
 
         public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
+            try
+            {
+                return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
+            }
+            catch (Exception Ex)
+            {
+
+                return new ErrorDataResult<List<ProductDetailDto>>(Ex.Message);
+            }
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
             try

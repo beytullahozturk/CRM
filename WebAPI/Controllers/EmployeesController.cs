@@ -1,27 +1,24 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class EmployeesController : Controller
     {
-        IProductService _productService;
+        IEmployeeService _employeeService;
 
-        public ProductsController(IProductService productService)
+        public EmployeesController(IEmployeeService employeeService)
         {
-            _productService = productService;
+            _employeeService = employeeService;
         }
 
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            var result = _productService.GetAll();
+            var result = _employeeService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,7 +29,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _productService.GetById(id);
+            var result = _employeeService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -42,9 +39,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Post(Product product)
+        public IActionResult Post(Employee employee)
         {
-            var result = _productService.Add(product);
+            var result = _employeeService.Add(employee);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update(Product product)
+        public IActionResult Update(Employee employee)
         {
-            var result = _productService.Update(product);
+            var result = _employeeService.Update(employee);
 
             if (result.Success)
             {
@@ -67,7 +64,8 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(int id)
         {
-            var result = _productService.Delete(id);
+            var result = _employeeService.Delete(id);
+
             if (result.Success)
             {
                 return Ok(result);
@@ -75,5 +73,4 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
     }
-
 }
