@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -13,26 +14,28 @@ namespace Business.Concrete
     public class OrderManager : IOrderService
     {
         IOrderDal _orderDal;
+        IOrderDetailDal _orderDetailDal;
 
-        public OrderManager(IOrderDal orderDal)
+        public OrderManager(IOrderDal orderDal, IOrderDetailDal orderDetailDal)
         {
             _orderDal = orderDal;
+            _orderDetailDal = orderDetailDal;
         }
 
         [ValidationAspect(typeof(OrderValidator))]
-        public IResult Add(Order order)
+        public IResult Add(OrderDto orderDto)
         {
             try
             {
                 var orderAdd = new Order
                 {
-                    CustomerId = order.CustomerId,
-                    EmployeeId = order.EmployeeId,
-                    Freight = order.Freight,
-                    SubTotal = order.SubTotal,
-                    Discount = order.Discount,
-                    Tax = order.Tax,
-                    Total = order.Total,
+                    CustomerId = orderDto.CustomerId,
+                    EmployeeId = orderDto.EmployeeId,
+                    Freight = orderDto.Freight,
+                    SubTotal = orderDto.SubTotal,
+                    Discount = orderDto.Discount,
+                    Tax = orderDto.Tax,
+                    Total = orderDto.Total,
                     IsDelete = false,
                     IsStatus = true,
                     CreatedAt = DateTime.Now,
@@ -44,6 +47,25 @@ namespace Business.Concrete
                 _orderDal.Add(orderAdd);
 
 
+                foreach (var item in orderDto.OrderDetailDto)
+                {
+                    var orderDetailAdd = new OrderDetail
+                    {
+                        ProductId = item.ProductId,
+                        OrderId = item.OrderId,
+                        UnitPrice = item.UnitPrice,
+                        Quantity = item.Quantity,
+                        Amount = item.Amount,
+                        IsDelete = false,
+                        IsStatus = true,
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now,
+                        CreatedBy = 1,
+                        UpdatedBy = 1
+                    };
+
+                    _orderDetailDal.Add(orderDetailAdd);
+                }
 
                 return new SuccessResult(Messages.OrderAdded);
             }

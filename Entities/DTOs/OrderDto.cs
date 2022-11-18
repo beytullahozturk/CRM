@@ -1,10 +1,13 @@
 ﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.DTOs
 {
-    public class Order : IEntity
+    public class OrderDto : IDto
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }
@@ -20,5 +23,8 @@ namespace Entities.Concrete
         public DateTime UpdatedAt { get; set; }
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
+
+        public List<OrderDetailDto> OrderDetailDto { get; set; }
+
     }
 }

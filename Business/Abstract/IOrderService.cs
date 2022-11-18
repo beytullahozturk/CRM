@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 using System.Collections.Generic;
 
 namespace Business.Abstract
@@ -11,7 +12,7 @@ namespace Business.Abstract
         IDataResult<List<Order>> GetAllByEmployeeId(int employeeId);
         IDataResult<List<Order>> GetAllByTotal(decimal min, decimal max);
         IDataResult<Order> GetById(int orderId);
-        IResult Add(Order order);
+        IResult Add(OrderDto orderDto);
         IResult Update(Order order);
         IResult Delete(int orderId);
     }

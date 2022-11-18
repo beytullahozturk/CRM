@@ -106,7 +106,7 @@ namespace Business.Concrete
                 updateData.Phone = customer.Phone;
                 updateData.Email = customer.Email;
                 updateData.IsStatus = true;
-                updateData.UpdatedAt = DateTime.Now;
+                updateData.UpdatedAt = customer.UpdatedAt;
                 updateData.UpdatedBy = 1;
 
                 _customerDal.Update(updateData);

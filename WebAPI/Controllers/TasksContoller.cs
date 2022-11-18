@@ -1,24 +1,26 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : Controller
+    public class TasksContoller : Controller
     {
-        ICustomerService _customerService;
+        ITaskService _taskService;
 
-        public CustomersController(ICustomerService customerService)
+        public TasksContoller(ITaskService taskService)
         {
-            _customerService = customerService;
+            _taskService = taskService;
         }
 
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            var result = _customerService.GetAll();
+            var result = _taskService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -26,10 +28,20 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getallbyemployeeid")]
+        public IActionResult GetAllByEmployee(int id)
+        {
+            var result = _taskService.GetAllByEmployee(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _customerService.GetById(id);
+            var result = _taskService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -39,9 +51,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Customer customer)
+        public IActionResult Post(Task task)
         {
-            var result = _customerService.Add(customer);
+            var result = _taskService.Add(task);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,9 +62,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update(Customer customer)
+        public IActionResult Update(Task task)
         {
-            var result = _customerService.Update(customer);
+            var result = _taskService.Update(task);
 
             if (result.Success)
             {
@@ -64,7 +76,7 @@ namespace WebAPI.Controllers
         [HttpPost("delete")]
         public IActionResult Delete(int id)
         {
-            var result = _customerService.Delete(id);
+            var result = _taskService.Delete(id);
 
             if (result.Success)
             {

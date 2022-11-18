@@ -45,5 +45,14 @@ namespace Business.Constants
         public static string OrderListedByEmployee = "Siparişler personele göre listelendi.";
         public static string OrderUpdated = "Sipariş güncellendi.";
         public static string OrderDeleted = "Sipariş silindi.";
+
+        public static string TaskAdded = "Görev eklendi.";
+        public static string TaskListedSuccess = "Görevler listelendi.";
+        public static string TaskListedByEmployee = "Görevler personele göre listelendi.";
+        public static string TaskUpdated = "Görev güncellendi.";
+        public static string TaskDeleted = "Görev silindi.";
+
+
+
     }
 }

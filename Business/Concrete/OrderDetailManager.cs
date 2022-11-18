@@ -10,10 +10,10 @@ using System.Collections.Generic;
 
 namespace Business.Concrete
 {
-    public class IOrderDetailManager : IOrderDetailService
+    public class OrderDetailManager : IOrderDetailService
     {
         IOrderDetailDal _orderDetailDal;
-        public IOrderDetailManager(IOrderDetailDal orderDetailDal)
+        public OrderDetailManager(IOrderDetailDal orderDetailDal)
         {
             _orderDetailDal = orderDetailDal;
         }
