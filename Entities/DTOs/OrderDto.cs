@@ -9,7 +9,6 @@ namespace Entities.DTOs
 {
     public class OrderDto : IDto
     {
-        public int Id { get; set; }
         public int CustomerId { get; set; }
         public int EmployeeId { get; set; }
         public decimal Freight { get; set; }
