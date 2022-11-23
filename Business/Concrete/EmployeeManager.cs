@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,20 +24,20 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(EmployeeValidator))]
-        public IResult Add(Employee employee)
+        public IResult Add(EmployeeDto employeeDto)
         {
             try
             {
                 var employeeAdd = new Employee
                 {
-                    FirstName = employee.FirstName,
-                    LastName = employee.LastName,
-                    Department = employee.Department,
-                    BirthDate = employee.BirthDate,
-                    Address = employee.Address,
-                    City = employee.City,
-                    Phone = employee.Phone,
-                    Email = employee.Email,
+                    FirstName = employeeDto.FirstName,
+                    LastName = employeeDto.LastName,
+                    Department = employeeDto.Department,
+                    BirthDate = employeeDto.BirthDate,
+                    Address = employeeDto.Address,
+                    City = employeeDto.City,
+                    Phone = employeeDto.Phone,
+                    Email = employeeDto.Email,
                     IsDelete = false,
                     IsStatus = true,
                     CreatedAt = DateTime.Now,

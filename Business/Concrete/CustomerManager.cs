@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -20,18 +21,18 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CustomerValidator))]
-        public IResult Add(Customer customer)
+        public IResult Add(CustomerDto customerDto)
         {
             try
             {
                 var customerAdd = new Customer
                 {
-                    CustomerCompany = customer.CustomerCompany,
-                    CustomerName = customer.CustomerName,
-                    Address = customer.Address,
-                    City = customer.City,
-                    Phone = customer.Phone,
-                    Email = customer.Email,
+                    CustomerCompany = customerDto.CustomerCompany,
+                    CustomerName = customerDto.CustomerName,
+                    Address = customerDto.Address,
+                    City = customerDto.City,
+                    Phone = customerDto.Phone,
+                    Email = customerDto.Email,
                     IsDelete = false,
                     IsStatus = true,
                     CreatedAt = DateTime.Now,

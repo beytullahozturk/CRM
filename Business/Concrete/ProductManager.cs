@@ -23,17 +23,17 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(ProductValidator))]
-        public IResult Add(Product product)
+        public IResult Add(ProductDto productDto)
         {
             try
             {
                 var productAdd = new Product
                 {
-                    ProductName = product.ProductName,
-                    CategoryId = product.CategoryId,
-                    SupplierId = product.SupplierId,
-                    UnitPrice = product.UnitPrice,
-                    UnitInStock = product.UnitInStock,
+                    ProductName = productDto.ProductName,
+                    CategoryId = productDto.CategoryId,
+                    SupplierId = productDto.SupplierId,
+                    UnitPrice = productDto.UnitPrice,
+                    UnitInStock = productDto.UnitInStock,
                     IsDelete = false,
                     IsStatus = true,
                     CreatedAt = DateTime.Now,

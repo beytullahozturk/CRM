@@ -2,6 +2,7 @@
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -65,9 +66,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Post(Product product)
+        public IActionResult Post(ProductDto productDto)
         {
-            var result = _productService.Add(product);
+            var result = _productService.Add(productDto);
             if (result.Success)
             {
                 return Ok(result);
@@ -87,7 +88,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public IActionResult Delete(int id)
         {
             var result = _productService.Delete(id);

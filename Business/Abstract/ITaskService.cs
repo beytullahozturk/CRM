@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Business.Abstract
         IDataResult<List<Task>> GetAll();
         IDataResult<List<Task>> GetAllByEmployee(int employeeId);
         IDataResult<Task> GetById(int taskId);
-        IResult Add(Task task);
+        IResult Add(TaskDto taskDto);
         IResult Update(Task task);
         IResult Delete(int taskId);
     }

@@ -70,18 +70,13 @@
     "Microsoft.VisualStudio.Component.Azure.Waverton.BuildTools",
     "Microsoft.VisualStudio.Component.Azure.Waverton",
     "Microsoft.Component.Azure.DataLake.Tools",
-    "Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites",
-    "Microsoft.ComponentGroup.Blend",
     "Microsoft.VisualStudio.Component.DotNetModelBuilder",
     "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging",
-    "Microsoft.VisualStudio.Workload.ManagedDesktop",
     "Microsoft.Net.Component.3.5.DeveloperTools",
     "Microsoft.VisualStudio.Workload.Data",
     "Microsoft.VisualStudio.Workload.NetCoreTools",
     "Component.GitHub.VisualStudio",
     "Microsoft.VisualStudio.Component.LinqToSql",
-    "Microsoft.Net.Core.Component.SDK.2.2",
-    "Microsoft.Net.Core.Component.SDK.3.0",
     "Microsoft.NetCore.Component.Runtime.5.0"
   ]
 }

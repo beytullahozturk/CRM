@@ -1,15 +1,19 @@
 ﻿using Core.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Entities.DTOs
 {
-    public class OrderDetailDto : IDto
+    public class ProductDto : IDto
     {
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int CategoryId { get; set; }
+        public int? SupplierId { get; set; }
         public decimal UnitPrice { get; set; }
-        public int Quantity { get; set; }
-        public decimal Amount { get; set; }
+        public int UnitInStock { get; set; }
         public bool IsDelete { get; set; }
         public bool IsStatus { get; set; }
         public DateTime CreatedAt { get; set; }

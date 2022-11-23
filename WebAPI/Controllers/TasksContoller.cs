@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -48,9 +50,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Post(Task task)
+        public IActionResult Post(TaskDto taskDto)
         {
-            var result = _taskService.Add(task);
+            var result = _taskService.Add(taskDto);
             if (result.Success)
             {
                 return Ok(result);
@@ -70,7 +72,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("delete")]
+        [HttpDelete("delete")]
         public IActionResult Delete(int id)
         {
             var result = _taskService.Delete(id);

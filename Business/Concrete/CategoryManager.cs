@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -20,14 +21,14 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CategoryValidator))]
-        public IResult Add(Category category)
+        public IResult Add(CategoryDto categoryDto)
         {
             try
             {
                 var categoryAdd = new Category
                 {
-                    CategoryName = category.CategoryName,
-                    Description = category.Description,
+                    CategoryName = categoryDto.CategoryName,
+                    Description = categoryDto.Description,
                     IsDelete = false,
                     IsStatus = true,
                     CreatedAt = DateTime.Now,

@@ -3,13 +3,14 @@ using System;
 
 namespace Entities.DTOs
 {
-    public class OrderDetailDto : IDto
+    public class SupplierDto : IDto
     {
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
-        public decimal UnitPrice { get; set; }
-        public int Quantity { get; set; }
-        public decimal Amount { get; set; }
+        public string SupplierCompany { get; set; }
+        public string SupplierName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public bool IsDelete { get; set; }
         public bool IsStatus { get; set; }
         public DateTime CreatedAt { get; set; }

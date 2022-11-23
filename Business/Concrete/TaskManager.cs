@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -20,15 +21,15 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(TaskValidator))]
-        public IResult Add(Task task)
+        public IResult Add(TaskDto taskDto)
         {
             try
             {
                 var taskAdd = new Task
                 {
-                    EmployeeId = task.EmployeeId,
-                    Title = task.Title,
-                    Description = task.Description,
+                    EmployeeId = taskDto.EmployeeId,
+                    Title = taskDto.Title,
+                    Description = taskDto.Description,
                     IsDelete = false,
                     IsStatus = true,
                     CreatedAt = DateTime.Now,

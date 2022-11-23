@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +24,18 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(SupplierValidator))]
-        public IResult Add(Supplier supplier)
+        public IResult Add(SupplierDto supplierDto)
         {
             try
             {
                 var supplierrAdd = new Supplier
                 {
-                    SupplierCompany = supplier.SupplierCompany,
-                    SupplierName = supplier.SupplierName,
-                    Address = supplier.Address,
-                    City = supplier.City,
-                    Phone = supplier.Phone,
-                    Email = supplier.Email,
+                    SupplierCompany = supplierDto.SupplierCompany,
+                    SupplierName = supplierDto.SupplierName,
+                    Address = supplierDto.Address,
+                    City = supplierDto.City,
+                    Phone = supplierDto.Phone,
+                    Email = supplierDto.Email,
                     IsDelete = false,
                     IsStatus = true,
                     CreatedAt = DateTime.Now,
