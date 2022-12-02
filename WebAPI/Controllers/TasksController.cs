@@ -7,11 +7,10 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TasksContoller : Controller
+    public class TasksController : Controller
     {
         ITaskService _taskService;
-
-        public TasksContoller(ITaskService taskService)
+        public TasksController(ITaskService taskService)
         {
             _taskService = taskService;
         }
@@ -85,3 +84,4 @@ namespace WebAPI.Controllers
         }
     }
 }
+
