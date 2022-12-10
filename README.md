@@ -1,2 +1,3 @@
 Customer Relationship Management Project
-Demo: [![Demo](Link)](http://www.beytullahcrm.somee.com/swagger/index.html)
+This site was built using [GitHub Pages](https://pages.github.com/).
+
