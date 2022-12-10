@@ -8,8 +8,6 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Trusted_Connection=True: Kullanıcı adı ve parola istemez.
-            // optionsBuilder.UseSqlServer(@"Server=dataCRM.mssql.somee.com;Database=dataCRM;User Id=ozbeytullah_SQLLogin_1;Password=4uji3gierr;");
             optionsBuilder.UseSqlServer(@"Server=MonsterPC\SQLEXPRESS;Database=DbCRM;Trusted_Connection=True;");
         }
 
